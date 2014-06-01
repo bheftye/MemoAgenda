@@ -53,14 +53,12 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 		String texto = "Registro exitoso, inicia sesión";
 		boolean camposLlenos = alias != "" && nombre != "" && contrasena != "" && contrasenaConfirmacion != "" && correo != "";
 		if(camposLlenos){
-			System.out.println(contrasena);
-			System.out.println(contrasenaConfirmacion);
-			System.out.println(alias);
-			System.out.println(correo);
-			System.out.println(nombre);
-			
 			if(contrasena.equals(contrasenaConfirmacion)){
 				nuevoUsuario = new Usuario();
+				nuevoUsuario.setAlias(alias);
+				nuevoUsuario.setContrasena(contrasena);
+				nuevoUsuario.setCorreo(correo);
+				nuevoUsuario.setNombre(nombre);
 				boolean insercionExitosa = dao.insertarUsuario(nuevoUsuario);
 				if(!insercionExitosa){
 					texto = "Registro fallido, intentalo de nuevo";
