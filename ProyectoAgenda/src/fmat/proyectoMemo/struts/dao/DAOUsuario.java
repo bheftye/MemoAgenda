@@ -30,9 +30,11 @@ public class DAOUsuario extends DAOBase {
 				+ "\"," + "MD5(\"" + nuevoUsuario.getContrasena() + "\"),\""+nuevoUsuario.getAlias()+".jpg\")";
 		try {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate(sql);
-			int idUsuario = this.getGeneratedId(statement);
+			int idUsuario = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 			nuevoUsuario.setIdUsuario(idUsuario);
+			if(idUsuario != 0){
+				oprExitosa = true;
+			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
