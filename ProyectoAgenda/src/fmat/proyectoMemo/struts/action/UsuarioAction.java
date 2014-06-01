@@ -6,6 +6,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import fmat.proyectoMemo.struts.dao.DAOUsuario;
 import fmat.proyectoMemo.struts.model.Usuario;
 
 
@@ -24,17 +25,14 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 	 */
 	
 	public String iniciarSesion() throws Exception {
-		Usuario usuario = new Usuario();
-
-		String texto = "Nombre de usuario o contraseña incorrectos";
+		Usuario usuario = null;
+		DAOUsuario dao = new DAOUsuario();
+		String texto = "Nombre de usuario o contrase&ntilde;a incorrectos";
 		/**
-		 * Coloca el usuario al nivel de la sesión
+		 * Coloca el usuario al nivel de la sesiï¿½n
 		 */
-		
-		if(alias.equals("Maya") && contrasena.equals("123")){
-			usuario.setAlias("Maya");
-			usuario.setContrasena("123");
-			
+		usuario = dao.obtenerUsuarioPorCredenciales(alias, contrasena);
+		if( usuario != null){
 			mapSession.put("usuario", usuario);
 			return "portal";
 		}else{
@@ -45,7 +43,7 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 	
 	public String cerrarSesion() throws Exception{
 		mapSession.remove("usuario");
-		System.out.println("CERRAR SESIÓN");
+		System.out.println("CERRAR SESIï¿½N");
 		return "index";
 	}
 	
