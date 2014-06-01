@@ -24,11 +24,10 @@ public class DAOUsuario extends DAOBase {
 	public boolean insertarUsuario(Usuario nuevoUsuario) {
 		boolean oprExitosa = false;
 		String sql = "INSERT INTO `usuarios`("
-				+ "`nombre`, `alias`, `correo`, `contrasena`, `foto`) "
-				+ "VALUES (" + nuevoUsuario.getNombre() + ","
-				+ nuevoUsuario.getAlias() + "," + nuevoUsuario.getCorreo()
-				+ "," + "MD5(" + nuevoUsuario.getContrasena() + "),"
-				+ nuevoUsuario.getFoto() + ")";
+				+ "`nombre`, `alias`, `correo`, `contrasena`,`foto`) "
+				+ "VALUES (\"" + nuevoUsuario.getNombre() + "\",\""
+				+ nuevoUsuario.getAlias() + "\",\"" + nuevoUsuario.getCorreo()
+				+ "\"," + "MD5(\"" + nuevoUsuario.getContrasena() + "\"),\""+nuevoUsuario.getAlias()+".jpg\")";
 		try {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(sql);
@@ -68,8 +67,8 @@ public class DAOUsuario extends DAOBase {
 	
 	public Usuario obtenerUsuarioPorCredenciales(String alias, String contrasena){
 		Usuario usuario = null;
-		String sql = "SELECT * FROM `usuarios` WHERE `alias` = "
-				+ alias + " and contrasena = MD5("+contrasena+")";
+		String sql = "SELECT * FROM `usuarios` WHERE `alias` = \""
+				+ alias + "\" and `contrasena` = MD5(\""+contrasena+"\")";
 		
 		try {
 			Statement statement = connection.createStatement();

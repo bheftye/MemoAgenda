@@ -17,6 +17,9 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> mapSession;
 	private String alias;
 	private String contrasena;
+	private String nombre;
+	private String contrasenaConfirmacion;
+	private String correo;
 	
 	/**
 	 * Agregar la clase services para que el usuario sea null
@@ -31,7 +34,10 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 		/**
 		 * Coloca el usuario al nivel de la sesi�n
 		 */
-		usuario = dao.obtenerUsuarioPorCredenciales(alias, contrasena);
+		if(alias != "" && contrasena != ""){
+			usuario = dao.obtenerUsuarioPorCredenciales(alias, contrasena);
+			texto = "Favor de llenar todos los campos";
+		}
 		if( usuario != null){
 			mapSession.put("usuario", usuario);
 			return "portal";
@@ -39,6 +45,36 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 			addActionError(texto);
 			return "login";
 		}
+	}
+	
+	public String registrarUsuario() throws Exception{
+		Usuario nuevoUsuario = null;
+		DAOUsuario dao = new DAOUsuario();
+		String texto = "Registro exitoso, inicia sesión";
+		boolean camposLlenos = alias != "" && nombre != "" && contrasena != "" && contrasenaConfirmacion != "" && correo != "";
+		if(camposLlenos){
+			System.out.println(contrasena);
+			System.out.println(contrasenaConfirmacion);
+			System.out.println(alias);
+			System.out.println(correo);
+			System.out.println(nombre);
+			
+			if(contrasena.equals(contrasenaConfirmacion)){
+				nuevoUsuario = new Usuario();
+				boolean insercionExitosa = dao.insertarUsuario(nuevoUsuario);
+				if(!insercionExitosa){
+					texto = "Registro fallido, intentalo de nuevo";
+				}
+			}
+			else{
+				texto = "Las contraseñas no coinciden";
+			}
+		}
+		else{
+			texto = "Llena todos los campos para continuar el registro";
+		}
+		addActionError(texto);
+		return "login";
 	}
 	
 	public String cerrarSesion() throws Exception{
@@ -58,6 +94,30 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 	}
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getContrasenaConfirmacion() {
+		return contrasenaConfirmacion;
+	}
+
+	public void setContrasenaConfirmacion(String contrasenaConfirmacion) {
+		this.contrasenaConfirmacion = contrasenaConfirmacion;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 	@Override

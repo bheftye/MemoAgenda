@@ -1273,7 +1273,7 @@ p a:hover {
 .body .content-login div form input {
 	width: 330px;
 }
-.body .content-blog-single div div ul li div.section div form input#submit, .body .content-contact div div form input.submit, .body .content-login div form input.submit, .calButton, .body .content-login div form input.submit {
+.body .content-blog-single div div ul li div.section div form input#submit, input[type="submit"] , .body .content-contact div div form input.submit, .body .content-login div form input.submit, .calButton, .body .content-login div form input.submit {
 	background-color: #dd8514;
 	border: 0;
 	color: #fff;
@@ -1285,7 +1285,7 @@ p a:hover {
 	margin: 0;
 	width: 119px;
 }
-.body .content-blog-single div div ul li div.section div form input#submit:hover, .body .content-contact div div form input.submit:hover, .body .content-login div form input.submit:hover, .calButton:hover {
+.body .content-blog-single div div ul li div.section div form input#submit:hover, input[type="submit"]:hover , .body .content-contact div div form input.submit:hover, .body .content-login div form input.submit:hover, .calButton:hover {
 	background-color: #e0912c;
 }
 /*------------------------- Footer ------------------------*/

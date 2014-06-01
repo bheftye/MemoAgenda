@@ -37,47 +37,30 @@
 					<div>
 						<table>
 							<tr>
-								<td><h3>Iniciar sesión</h3>
+								<td><h3 style="margin-top:50px;">Iniciar sesión</h3>
 									
 									<!-- 
 									<form action="login">
 										 -->
 										 
-										<h4>Escribe tu alias y contrase&ntilde;a para iniciar
+										<h4 >Escribe tu alias y contrase&ntilde;a para iniciar
 											sesi&oacute;n</h4>
 										
 											<s:actionerror />
 											<s:form action="iniciarSesion">
 											
-											<s:textfield name="alias" value="Alias *"
-											onBlur="this.value=!this.value?'Alias *':this.value;"
+											<s:textfield name="alias" placeholder="Alias*"
 											onFocus="this.select()" 
 											onClick="this.value='';" />
 											
-											<s:textfield name="contrasena"  value="Contraseña *"
-											onBlur="this.value=!this.value?'Contrase&ntilde;a *':this.value;"
+											<s:password name="contrasena"  placeholder="Contraseña*"
 											onFocus="this.select()" 
 											onClick="this.value='';" />
 											
-											<s:submit  class="submit" 
+											<s:submit  cssClass="submit"
 											value="Iniciar sesión" />
 											</s:form>
 										
-										<!--  
-										<input type="text" value="Nombre *"
-											onBlur="this.value=!this.value?'Nombre *':this.value;"
-											onFocus="this.select()" 
-											onClick="this.value='';">
-											 
-									    <input
-											type="text" value="Contrase&ntilde;a *"
-											onBlur="this.value=!this.value?'Contrase&ntilde;a *':this.value;"
-											onFocus="this.select()" onClick="this.value='';"> 
-											
-										<input 
-											type="submit" class="submit" 
-											value="Iniciar sesi&oacute;n">
-										-->
 										<p>
 											<a href="#">¿Olvidaste tu contraseña?</a>
 										</p>
@@ -89,26 +72,35 @@
 									</td>
 								
 								<td class="linea"><h3 class="registro">Registro</h3>
-									<form action="index.html">
 										<h4>Escribe tu nombre, contrase&ntilde;a y correo
-											electr&oacute;nico para registrarte.</h4>
-										<input type="text" value="Nombre *"
-											onBlur="this.value=!this.value?'Nombre *':this.value;"
-											onFocus="this.select()" onClick="this.value='';"> <input
-											type="text" value="Alias *"
-											onBlur="this.value=!this.value?'Alias *':this.value;"
-											onFocus="this.select()" onClick="this.value='';"> <input
-											type="text" value="Correo electr&oacute;nico *"
-											onBlur="this.value=!this.value?'Correo electr&oacute;nico *':this.value;"
-											onFocus="this.select()" onClick="this.value='';"> <input
-											type="text" value="Contrase&ntilde;a *"
-											onBlur="this.value=!this.value?'Contrase&ntilde;a *':this.value;"
-											onFocus="this.select()" onClick="this.value='';"> <input
-											type="text" value="Confirmar contrase&ntilde;a *"
-											onBlur="this.value=!this.value?'Contrase&ntilde;a *':this.value;"
-											onFocus="this.select()" onClick="this.value='';"> <input
-											type="submit" class="submit" value="Registrarse">
-									</form></td>
+											electr&oacute;nico para registrarte.</h4>										
+											
+											<s:actionerror />
+											<s:form action="registrarUsuario">
+											
+											<s:textfield name="nombre" placeholder="Nombre*"
+											onFocus="this.select()" 
+											onClick="this.value='';" />
+											
+											<s:textfield name="correo" placeholder="Correo Electr&oacute;nico*"
+											onFocus="this.select()" 
+											onClick="this.value='';" />
+											
+											<s:textfield name="alias" placeholder="Alias*"
+											onFocus="this.select()" 
+											onClick="this.value='';" />
+											
+											<s:password name="contrasena"  placeholder="Contraseña*"
+											onFocus="this.select()" 
+											onClick="this.value='';" />
+											
+											<s:password name="contrasenaConfirmacion"  placeholder="Contraseña Confirmaci&oacute;n*"
+											onFocus="this.select()" 
+											onClick="this.value='';" />
+											
+											<s:submit  cssClass="submit"
+											value="Registrarse" />
+											</s:form></td>
 							</tr>
 						</table>
 					</div>
