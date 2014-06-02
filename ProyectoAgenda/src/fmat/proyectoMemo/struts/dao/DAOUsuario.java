@@ -44,7 +44,8 @@ public class DAOUsuario extends DAOBase {
 	}
 	
 	public ArrayList<Usuario> buscarUsuario(String aliasABuscar, String aliasSesion){
-		String sqlBusqueda = "SELECT * FROM usuarios where alias like(%'"+aliasABuscar+"'%)";
+		String sqlBusqueda = "SELECT * FROM usuarios where alias like '%"+aliasABuscar+"%'";
+		System.out.println(sqlBusqueda);
 		ArrayList<Usuario> usuarios = new ArrayList<>();
 		try{
 			Statement statement = connection.createStatement();

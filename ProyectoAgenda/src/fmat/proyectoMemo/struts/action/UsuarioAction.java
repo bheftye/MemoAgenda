@@ -49,16 +49,27 @@ public class UsuarioAction extends ActionSupport implements SessionAware {
 
 	public String buscarUsuario() {
 		DAOUsuario dao = new DAOUsuario();
-		String htmlResultado = "";
 		boolean camposLlenos = !usuario.getAlias().equals("");
 		if (camposLlenos && mapSession.get("usuario") != null) {
 			if (usuario.getAlias().equals(
 					((Usuario) mapSession.get("usuario")).getAlias())) {
 				htmlUsuarios = "<p>Un, dos, tres por tí.</p>";
 			} else {
-				ArrayList<Usuario> usuarios = new ArrayList();
+				ArrayList<Usuario> usuarios = new ArrayList<>();
 				usuarios = dao.buscarUsuario(usuario.getAlias(),
 						((Usuario) mapSession.get("usuario")).getAlias());
+				Usuario usuarioIndexado;
+				htmlUsuarios = "<table><tr><th>Alias</th><th>Agregar</th></tr>";
+				for(int i = 0; i < usuarios.size(); i++){
+					usuarioIndexado = usuarios.get(i);
+					htmlUsuarios += "<tr><td>"+usuarioIndexado.getAlias()+"</td>";
+					htmlUsuarios += "<td><s:form action=\"agregarUsuario\">"+
+										"<s:hidden name=\"usuario.idUsuario\" value=\""+usuarioIndexado.getIdUsuario()+"\" />"+
+								"<s:submit cssClass=\"submit\" value=\"Agregar\" />"+
+							"</s:form></td></tr>";
+				}
+				htmlUsuarios += "</table>";
+				System.out.println(htmlUsuarios);
 			}
 		} else {
 			addFieldError("usuario.alias", "Introduce un alias a buscar.");

@@ -65,7 +65,6 @@
 							<br />
 							<s:actionerror />
 							<s:form action="buscarUsuario">
-
 								<s:textfield name="usuario.alias"
 									onFocus="this.select()"  label="Alias a buscar" />
 
