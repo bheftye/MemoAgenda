@@ -1,0 +1,53 @@
+-Struts:
+	*Redireccionamiento
+	*Actions
+	*Validaciones
+	*jsp
+	*sesiones
+	*formularios
+	*Etiqueta s:
+	
+-Servlets:
+	*Servlets
+	*Custom tags
+	*jsp
+
+
+
+Faltan:
+	*Interceptors
+	*Filtros
+	*Internacionalización
+
+
+
+(SELECT id_evento FROM eventos_integrantes WHERE id_integrante = numero) AS resultado2
+
+
+(SELECT id_grupo FROM grupos WHERE id_integrante = numero ) AS resultado
+
+
+SELECT id_evento FROM eventos_grupos WHERE grupo = resultado
+
+SELECT * FROM eventos WHERE id_evento = numero 
+
+
+((SELECT id_evento FROM eventos_grupos WHERE grupo = (SELECT id_grupo FROM grupos WHERE id_integrante = numero ) AS resultado) AS resultado3 join 
+(SELECT id_evento FROM eventos_integrantes WHERE id_integrante = numero) AS resultado2 on resultado2.id_evento = resultado3.id_evento) AS result_eventos
+
+
+_______________________________________
+
+SELECT * FROM eventos WHERE id_evento = ((SELECT id_evento FROM eventos_grupos WHERE grupo = (SELECT id_grupo FROM grupos WHERE id_integrante = numero ) AS resultado) AS resultado3 join 
+(SELECT id_evento FROM eventos_integrantes WHERE id_integrante = numero) AS resultado2 on resultado2.id_evento = resultado3.id_evento) AS result_eventos
+
+
+
+Eventos:
+Evento
+Fecha de inicio
+Fecha final
+Hora de inicio
+hora final
+Repeticion del evento 
+Invitar usuarios

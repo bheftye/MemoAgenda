@@ -23,8 +23,8 @@
 					alt="logo"></a>
 				<ul>
 					<li class="selected home"><a href="index.html">Inicio</a></li>
-					<li class="about"><a href="about.html">Perfil</a></li>
-					<li class="blog"><a href="blog.html">Agenda</a></li>
+					<li class="about"><a href="about.jsp">Perfil</a></li>
+					<li class="blog"><a href="blog.jsp">Agenda</a></li>
 					<li class="projects"><a href="projects.html">Ajustes</a></li>
 					<li class="contact"><a href="contact.html">Contacto</a></li>
 				</ul>
@@ -59,10 +59,10 @@
 				<div class="footer">
 					<p>&#169; 2014 MEMO | AGENDA EN LINEA</p>
 					<ul>
-						<li><a href="index.html">Inicio</a></li>
-						<li><a href="about.html">Perfil</a></li>
-						<li><a href="projects.html">Agenda</a></li>
-						<li><a href="blog.html">Ajustes</a></li>
+						<li><a href="index.jsp">Inicio</a></li>
+						<li><a href="about.jsp">Perfil</a></li>
+						<li><a href="blog.jsp">Agenda</a></li>
+						<li><a href="blog.jsp">Ajustes</a></li>
 						<li><a href="contact.html">Contacto</a></li>
 					</ul>
 				</div>

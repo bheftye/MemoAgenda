@@ -1,0 +1,81 @@
+package fmat.proyectoMemo.struts.model;
+
+import java.sql.Date;
+
+public class Evento {
+	private int id_evento;
+	private String nombre;
+	private Date fecha_inicio, fecha_final;
+	private String hora_inicio, hora_final;
+	private String ubicacion;
+	private int id_integrante;
+	private int id_creador;
+	private int id_grupo;
+	
+	public Evento() {
+		super();
+	}
+	
+	public int getId_evento() {
+		return id_evento;
+	}
+	public void setId_evento(int id_evento) {
+		this.id_evento = id_evento;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public Date getFecha_inicio() {
+		return fecha_inicio;
+	}
+	public void setFecha_inicio(Date fecha_inicio) {
+		this.fecha_inicio = fecha_inicio;
+	}
+	public Date getFecha_final() {
+		return fecha_final;
+	}
+	public void setFecha_final(Date fecha_final) {
+		this.fecha_final = fecha_final;
+	}
+	public String getHora_inicio() {
+		return hora_inicio;
+	}
+	public void setHora_inicio(String hora_inicio) {
+		this.hora_inicio = hora_inicio;
+	}
+	public String getHora_final() {
+		return hora_final;
+	}
+	public void setHora_final(String hora_final) {
+		this.hora_final = hora_final;
+	}
+	public String getUbicacion() {
+		return ubicacion;
+	}
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+	public int getId_integrante() {
+		return id_integrante;
+	}
+	public void setId_integrante(int id_integrante) {
+		this.id_integrante = id_integrante;
+	}
+	public int getId_creador() {
+		return id_creador;
+	}
+	public void setId_creador(int id_creador) {
+		this.id_creador = id_creador;
+	}
+	public int getId_grupo() {
+		return id_grupo;
+	}
+	public void setId_grupo(int id_grupo) {
+		this.id_grupo = id_grupo;
+	}
+
+	
+}

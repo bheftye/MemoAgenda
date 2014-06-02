@@ -1155,6 +1155,7 @@ p a:hover {
 	font-weight: 400;
 	margin: 0;
 	text-transform: none;
+	text-decoration: none;
 }
 .body .content-blog div div.sidebar div form, .body .content-blog-single div div.sidebar div form {
 	margin: 0 0 17px;

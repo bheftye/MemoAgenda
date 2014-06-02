@@ -3,7 +3,6 @@
 
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
-<!-- Website template by freewebsitetemplates.com -->
 <html>
 <head>
 <meta charset="UTF-8">
@@ -20,7 +19,7 @@
 				<ul>
 					<li class="home"><a href="portal.jsp">Inicio</a></li>
 					<li class=" selected about"><a href="about.jsp">Perfil</a></li>
-					<li class="blog"><a href="blog.html">Agenda</a></li>
+					<li class="blog"><a href="blog.jsp">Agenda</a></li>
 					<li class="projects"><a href="projects.html">Ajustes</a></li>
 					<li class="contact"><a href="contact.html">Contacto</a></li>
 				</ul>
@@ -95,7 +94,7 @@
 					<ul>
 						<li><a href="portal.jsp">Inicio</a></li>
 						<li><a href="about.jsp">Perfil</a></li>
-						<li><a href="projects.html">Agenda</a></li>
+						<li><a href="blog.jsp">Agenda</a></li>
 						<li><a href="blog.html">Ajustes</a></li>
 						<li><a href="contact.html">Contacto</a></li>
 					</ul>
