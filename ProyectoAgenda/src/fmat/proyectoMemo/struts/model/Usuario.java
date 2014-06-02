@@ -1,5 +1,7 @@
 package fmat.proyectoMemo.struts.model;
 
+import java.util.ArrayList;
+
 public class Usuario {
 	private int idUsuario;
 	private String alias;
@@ -7,9 +9,10 @@ public class Usuario {
 	private String nombre;
 	private String correo;
 	private String foto;
+	private ArrayList<Usuario> contactos;
 	
 	public Usuario(int idUsuario, String alias, String contrasena,
-			String nombre, String correo, String foto) {
+			String nombre, String correo, String foto, ArrayList<Usuario> contactos) {
 		super();
 		this.idUsuario = idUsuario;
 		this.alias = alias;
@@ -17,10 +20,19 @@ public class Usuario {
 		this.nombre = nombre;
 		this.correo = correo;
 		this.foto = foto;
+		this.contactos = contactos;
 	}
 
 	public Usuario(){}
 	
+	public ArrayList<Usuario> getContactos() {
+		return contactos;
+	}
+
+	public void setContactos(ArrayList<Usuario> contactos) {
+		this.contactos = contactos;
+	}
+
 	public String getAlias() {
 		return alias;
 	}

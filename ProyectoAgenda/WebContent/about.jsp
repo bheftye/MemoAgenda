@@ -40,7 +40,7 @@
                 <td><img src="images/icon-perfil3.jpg" class="fotoPerfil"/></td>
                 <td><strong><s:property value="#session['usuario'].nombre"/> </strong><p id="alias"> <s:property value="#session['usuario'].alias"/></p></td>
                 <td width="200px" align="left"></td>
-                <td width="200px" align="left"><strong>Contactos: </strong>44 </td>
+                <td width="200px" align="left"><strong>Contactos: </strong><s:property value="#session['usuario'].contactos.size"/></td>
                 <td><strong>Grupos: </strong> 6</td>
               </tr>
             </table>
@@ -54,7 +54,12 @@
             <br/> <strong>Alias:</strong> <s:property value="#session['usuario'].alias"/>
             <br /> <strong>Correo electr&oacute;nico:</strong> <s:property value="#session['usuario'].correo"/></p>
             <h1>Contactos</h1>
-            <p>  </p>
+            <s:iterator value="#session['usuario'].contactos" status="a">
+             <s:iterator value="#session['usuario'].contactos[#a.index]">
+                      <s:property value="alias"/>
+                      <br>
+              </s:iterator>
+			</s:iterator>
             <h1>Grupos</h1>
             <p> </p>
           </div>

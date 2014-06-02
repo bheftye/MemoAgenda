@@ -61,40 +61,20 @@
 					</div>
 					<div>
 						<div>
-							<h1>Datos personales</h1>
+							<h1>Crear Grupo</h1>
 							<br />
 							<s:actionerror />
-							<s:form action="modificarInformacion">
+							<s:form action="buscarUsuario">
+								<s:textfield name="usuario.alias"
+									onFocus="this.select()"  label="Alias a buscar" />
 
-								<s:textfield name="usuario.nombre" value="%{#session['usuario'].nombre}" placeholder="Nombre*"
-									onFocus="this.select()" label="Nombre" />
-
-								<s:textfield name="usuario.correo"
-									placeholder="Correo Electr&oacute;nico*"
-									onFocus="this.select()" value="%{#session['usuario'].correo}" label="Correo" />
-
-								<s:textfield name="usuario.alias" value="%{#session['usuario'].alias}" placeholder="Alias*"
-									onFocus="this.select()" label="Alias" />
-
-								<s:submit cssClass="submit" value="Guardar" />
-							</s:form>
-							<br>
-							<s:form action="modificarContrasena">
-
-								<s:password name="usuario.contrasena"
-									onFocus="this.select()" onClick="this.value='';" label="Nueva Contraseña" />
-
-								<s:password name="contrasenaConfirmacion"
-									placeholder=""
-									onFocus="this.select()" onClick="this.value='';" label="Confirmar Contraseña" />
-
-								<s:submit cssClass="submit" value="Cambiar Contraseña" />
+								<s:submit cssClass="submit" value="Buscar" />
 							</s:form>
 							
-							<h1>Contactos</h1>
-							<p></p>
-							<h1>Grupos</h1>
-							<p></p>
+							
+							<s:div>
+								<s:property escape="false" value="htmlUsuarios" />
+							</s:div>
 						</div>
 						<div class="sidebar">
 							<div>
