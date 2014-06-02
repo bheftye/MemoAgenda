@@ -45,6 +45,12 @@
 			<result name="addContact">/addcontact.jsp</result>
 		</action>
 		
+		<action name="agregarAmigo"
+			class="fmat.proyectoMemo.struts.action.UsuarioAction"
+			method="agregarAmigo">
+			<result name="addContact">/addcontact.jsp</result>
+		</action>
+		
 		<action name="modificarContrasena"
 			class="fmat.proyectoMemo.struts.action.UsuarioAction"
 			method="modificarContrasena">

@@ -60,13 +60,16 @@ public class UsuarioAction extends ActionSupport implements SessionAware {
 						((Usuario) mapSession.get("usuario")).getAlias());
 				Usuario usuarioIndexado;
 				htmlUsuarios = "<table><tr><th>Alias</th><th>Agregar</th></tr>";
-				for(int i = 0; i < usuarios.size(); i++){
+				for (int i = 0; i < usuarios.size(); i++) {
 					usuarioIndexado = usuarios.get(i);
-					htmlUsuarios += "<tr><td>"+usuarioIndexado.getAlias()+"</td>";
-					htmlUsuarios += "<td><s:form action=\"agregarUsuario\">"+
-										"<s:hidden name=\"usuario.idUsuario\" value=\""+usuarioIndexado.getIdUsuario()+"\" />"+
-								"<s:submit cssClass=\"submit\" value=\"Agregar\" />"+
-							"</s:form></td></tr>";
+					htmlUsuarios += "<tr><td>" + usuarioIndexado.getAlias()
+							+ "</td>";
+					htmlUsuarios += "<td><form action=\"agregarAmigo\">"
+							+ "<input type=\"hidden\" name=\"usuario.idUsuario\" value=\""
+							+ usuarioIndexado.getIdUsuario()
+							+ "\" />"
+							+ "<input type=\"submit\" class=\"submit\" value=\"Agregar\" />"
+							+ "</form></td></tr>";
 				}
 				htmlUsuarios += "</table>";
 				System.out.println(htmlUsuarios);
@@ -104,6 +107,32 @@ public class UsuarioAction extends ActionSupport implements SessionAware {
 		if (usuario != null) {
 			mapSession.put("usuario", usuario);
 		}
+	}
+
+	public String agregarAmigo() {
+		DAOUsuario dao = new DAOUsuario();
+		String texto = "No se pudo realizar la operación";
+		if (usuario.getIdUsuario() != 0 && mapSession.get("usuario") != null
+				&& ((Usuario) mapSession.get("usuario")).getIdUsuario() != 0) {
+			boolean sonAmigos = dao.sonAmigos(usuario.getIdUsuario(),
+					((Usuario) mapSession.get("usuario")).getIdUsuario());
+			if (!sonAmigos) {
+				boolean insercionExitosa = dao.agregarAmigo(
+						usuario.getIdUsuario(),
+						((Usuario) mapSession.get("usuario")).getIdUsuario());
+				if (insercionExitosa) {
+					texto = "Usuario agregado";
+					addActionError(texto);
+					return "addContact";
+				}
+				texto ="Ocurrio un error intentalo de nuevo";
+				addActionError(texto);
+				return "addContact";
+			}
+			texto ="Ya es un contacto tuyo";
+		}
+		addActionError(texto);
+		return "addContact";
 	}
 
 	public String modificarContrasena() throws Exception {
