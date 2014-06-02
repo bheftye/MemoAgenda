@@ -105,6 +105,8 @@ public class UsuarioAction extends ActionSupport implements SessionAware {
 
 	private void modificarInfoSesion() {
 		if (usuario != null) {
+			DAOUsuario dao = new DAOUsuario();
+			usuario = dao.obtenerUsuarioPorId(usuario.getIdUsuario());
 			mapSession.put("usuario", usuario);
 		}
 	}
