@@ -1,5 +1,6 @@
 package fmat.proyectoMemo.struts.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,6 +37,89 @@ public class DAOUsuario extends DAOBase {
 				oprExitosa = true;
 			}
 		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return oprExitosa;
+	}
+	
+	public boolean aliasDisponible(String alias){
+		boolean aliasDisponible = true;
+		String aliasUsado = "";
+		String sqlBusqueda = "SELECT alias FROM usuarios where alias = '"+alias+"'";
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet resultados = statement.executeQuery(sqlBusqueda);
+			while(resultados.next()){
+				aliasUsado = resultados.getString("alias");
+				if(alias.equals(aliasUsado)){
+					aliasDisponible = false;
+					break;
+				}
+			}
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		
+		return aliasDisponible;
+	}
+	
+	public boolean modificarContrasena(Usuario usuario, Usuario sesion){
+		boolean oprExitosa = false;
+		String sqlContrasena = "UPDATE usuarios SET contrasena = MD5(?) WHERE id_usuario = ?";
+		PreparedStatement sContrasena = null;
+		
+		try{
+			connection.setAutoCommit(false);
+			if(!usuario.getContrasena().equals(sesion.getContrasena())){
+				sContrasena = connection.prepareStatement(sqlContrasena);
+				sContrasena.setString(1, usuario.getContrasena());
+				sContrasena.setInt(2, sesion.getIdUsuario());
+				sContrasena.executeUpdate();
+			}
+			
+			connection.commit();
+			connection.setAutoCommit(true);
+			oprExitosa = true;
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return oprExitosa;
+	}
+	
+	public boolean modificarInformacionUsuario(Usuario usuario, Usuario sesion){
+		boolean oprExitosa = false;
+		String sqlNombre = "UPDATE usuarios SET nombre = ? WHERE id_usuario = ?";
+		String sqlAlias = "UPDATE usuarios SET alias = ? WHERE id_usuario = ?";
+		String sqlCorreo = "UPDATE usuarios SET correo = ? WHERE id_usuario = ?";
+		PreparedStatement sNombre = null;
+		PreparedStatement sAlias = null;
+		PreparedStatement sCorreo = null;
+		try{
+			connection.setAutoCommit(false);
+			if(!usuario.getNombre().equals(sesion.getNombre())){
+				sNombre = connection.prepareStatement(sqlNombre);
+				sNombre.setString(1, usuario.getNombre());
+				sNombre.setInt(2, sesion.getIdUsuario());
+				sNombre.executeUpdate();
+			}
+			
+			if(!usuario.getAlias().equals(sesion.getAlias())){
+				sAlias = connection.prepareStatement(sqlAlias);
+				sAlias.setString(1, usuario.getAlias());
+				sAlias.setInt(2, sesion.getIdUsuario());
+				sAlias.executeUpdate();
+			}
+			
+			if(!usuario.getCorreo().equals(sesion.getCorreo())){
+				sCorreo = connection.prepareStatement(sqlCorreo);
+				sCorreo.setString(1, usuario.getCorreo());
+				sCorreo.setInt(2, sesion.getIdUsuario());
+			}
+			connection.commit();
+			connection.setAutoCommit(true);
+			oprExitosa = true;
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return oprExitosa;

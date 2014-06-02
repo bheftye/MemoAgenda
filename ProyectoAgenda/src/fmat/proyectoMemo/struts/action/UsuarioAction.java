@@ -1,5 +1,6 @@
 package fmat.proyectoMemo.struts.action;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -15,11 +16,9 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
 	
 	private Map<String, Object> mapSession;
-	private String alias;
-	private String contrasena;
-	private String nombre;
+	private Usuario usuario;
 	private String contrasenaConfirmacion;
-	private String correo;
+	private String htmlUsuarios = "<p>Sin coincidencias</p>";
 	
 	/**
 	 * Agregar la clase services para que el usuario sea null
@@ -28,14 +27,13 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 	 */
 	
 	public String iniciarSesion() throws Exception {
-		Usuario usuario = null;
 		DAOUsuario dao = new DAOUsuario();
 		String texto = "Nombre de usuario o contrase&ntilde;a incorrectos";
 		/**
 		 * Coloca el usuario al nivel de la sesi�n
 		 */
-		if(alias != "" && contrasena != ""){
-			usuario = dao.obtenerUsuarioPorCredenciales(alias, contrasena);
+		if(!usuario.getAlias().equals("") && !usuario.getContrasena().equals("")){
+			usuario = dao.obtenerUsuarioPorCredenciales(usuario.getAlias(), usuario.getContrasena());
 			texto = "Favor de llenar todos los campos";
 		}
 		if( usuario != null){
@@ -47,21 +45,93 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
+	public String buscarUsuario(){
+		DAOUsuario dao = new DAOUsuario();
+		String htmlResultado = "";
+		boolean camposLlenos = !usuario.getAlias().equals("");
+		if(camposLlenos && mapSession.get("usuario") != null){
+			ArrayList<Usuario> usuarios = new ArrayList();
+			usuarios = dao.buscarUsuario(usuario.getAlias(), );
+		}
+		else{
+			addFieldError("usuario.alias","Introduce un alias a buscar.");
+			
+		}
+		return "addContact";
+	}
+	
+	public String modificarInformacion(){
+		DAOUsuario dao = new DAOUsuario();
+		String texto = "Se modifico exitosamente tu información";
+		boolean camposLlenos = !usuario.getAlias().equals("") && !usuario.getNombre().equals("") && !usuario.getCorreo().equals("");
+		if(camposLlenos && mapSession.get("usuario") != null){
+				boolean insercionExitosa = dao.modificarInformacionUsuario(usuario, (Usuario)mapSession.get("usuario"));
+				if(!insercionExitosa){
+					texto = "Modificación fallida, intentalo de nuevo";
+				}
+				else{
+					this.modificarInfoSesion();
+					return "editInfo";
+				}
+		}
+		else{
+			texto = "Llena todos los campos para continuar.";
+		}
+		addActionError(texto);
+		return "editInfo";
+	}
+	
+	private void modificarInfoSesion(){
+		if( usuario != null){
+			mapSession.put("usuario", usuario);
+		}
+	}
+	
+	public String modificarContrasena() throws Exception{
+		DAOUsuario dao = new DAOUsuario();
+		String texto = "";
+		boolean camposLlenos =  !usuario.getContrasena().equals("") && !contrasenaConfirmacion.equals("");
+		if(camposLlenos && mapSession.get("usuario")!= null){
+			if(usuario.getContrasena().equals(contrasenaConfirmacion)){
+				boolean insercionExitosa = dao.modificarContrasena(usuario,(Usuario)mapSession.get("usuario") );
+				if(!insercionExitosa){
+					texto = "Modificación fallida, intentalo de nuevo";
+					addActionError(texto);
+					return "editInfo";
+				}
+				else{
+					this.cerrarSesion();
+					texto = "Modificación exitosa, inicia sesión";
+					addActionError(texto);
+					return "login";
+				}
+			}
+			else{
+				texto = "Las contraseñas no coinciden";
+			}
+		}
+		else{
+			texto = "Llena todos los campos para continuar.";
+		}
+		addActionError(texto);
+		return "editInfo";
+	}
+	
 	public String registrarUsuario() throws Exception{
-		Usuario nuevoUsuario = null;
 		DAOUsuario dao = new DAOUsuario();
 		String texto = "Registro exitoso, inicia sesión";
-		boolean camposLlenos = alias != "" && nombre != "" && contrasena != "" && contrasenaConfirmacion != "" && correo != "";
+		boolean camposLlenos = !usuario.getAlias().equals("") && !usuario.getNombre().equals("") && !usuario.getContrasena().equals("") && !contrasenaConfirmacion.equals("") && !usuario.getCorreo().equals("");
 		if(camposLlenos){
-			if(contrasena.equals(contrasenaConfirmacion)){
-				nuevoUsuario = new Usuario();
-				nuevoUsuario.setAlias(alias);
-				nuevoUsuario.setContrasena(contrasena);
-				nuevoUsuario.setCorreo(correo);
-				nuevoUsuario.setNombre(nombre);
-				boolean insercionExitosa = dao.insertarUsuario(nuevoUsuario);
-				if(!insercionExitosa){
-					texto = "Registro fallido, intentalo de nuevo";
+			if(usuario.getContrasena().equals(contrasenaConfirmacion)){
+				boolean aliasDisponible = dao.aliasDisponible(usuario.getAlias());
+				if(!aliasDisponible){
+					texto = "Alias no disponible";
+				}
+				else{
+					boolean insercionExitosa = dao.insertarUsuario(usuario);
+					if(!insercionExitosa){
+						texto = "Registro fallido, intentalo de nuevo";
+					}
 				}
 			}
 			else{
@@ -81,27 +151,15 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 		return "index";
 	}
 	
-	public String getAlias() {
-		return alias;
+	
+	public void setUsuario(Usuario usuario){
+		this.usuario = usuario;
 	}
-	public void setAlias(String alias) {
-		this.alias = alias;
+	
+	public Usuario getUsuario(){
+		return this.usuario;
 	}
-	public String getContrasena() {
-		return contrasena;
-	}
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
+	
 	public String getContrasenaConfirmacion() {
 		return contrasenaConfirmacion;
 	}
@@ -110,12 +168,12 @@ public class UsuarioAction extends ActionSupport implements SessionAware{
 		this.contrasenaConfirmacion = contrasenaConfirmacion;
 	}
 
-	public String getCorreo() {
-		return correo;
+	public String getHtmlUsuarios() {
+		return htmlUsuarios;
 	}
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setHtmlUsuarios(String htmlUsuarios) {
+		this.htmlUsuarios = htmlUsuarios;
 	}
 
 	@Override

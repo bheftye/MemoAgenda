@@ -19,8 +19,8 @@
 				<a href="index.html" id="logo"><img src="images/logo.png"
 					alt="logo"></a>
 				<ul>
-					<li class="home"><a href="index.html">Inicio</a></li>
-					<li class="about"><a href="about.html">Perfil</a></li>
+					<li class="home"><a href="index.jsp">Inicio</a></li>
+					<li class="about"><a href="about.jsp">Perfil</a></li>
 					<li class="blog"><a href="blog.html">Agenda</a></li>
 					<li class="projects"><a href="projects.html">Ajustes</a></li>
 					<li class="contact"><a href="contact.html">Contacto</a></li>
@@ -31,7 +31,7 @@
 			</div>
 			<div class="body">
 				<div class="login">
-					<a href="login.html" id="login">Iniciar sesión | Registrarse</a>
+					<a href="login.jps" id="login">Iniciar sesión | Registrarse</a>
 				</div>
 				<div class="content-login">
 					<div>
@@ -49,11 +49,11 @@
 											<s:actionerror />
 											<s:form action="iniciarSesion">
 											
-											<s:textfield name="alias" placeholder="Alias*"
+											<s:textfield name="usuario.alias" placeholder="Alias*"
 											onFocus="this.select()" 
 											onClick="this.value='';" />
 											
-											<s:password name="contrasena"  placeholder="Contraseña*"
+											<s:password name="usuario.contrasena"  placeholder="Contraseña*"
 											onFocus="this.select()" 
 											onClick="this.value='';" />
 											
@@ -78,19 +78,19 @@
 											<s:actionerror />
 											<s:form action="registrarUsuario">
 											
-											<s:textfield name="nombre" placeholder="Nombre*"
+											<s:textfield name="usuario.nombre" placeholder="Nombre*"
 											onFocus="this.select()" 
 											onClick="this.value='';" />
 											
-											<s:textfield name="correo" placeholder="Correo Electr&oacute;nico*"
+											<s:textfield name="usuario.correo" placeholder="Correo Electr&oacute;nico*"
 											onFocus="this.select()" 
 											onClick="this.value='';" />
 											
-											<s:textfield name="alias" placeholder="Alias*"
+											<s:textfield name="usuario.alias" placeholder="Alias*"
 											onFocus="this.select()" 
 											onClick="this.value='';" />
 											
-											<s:password name="contrasena"  placeholder="Contraseña*"
+											<s:password name="usuario.contrasena"  placeholder="Contraseña*"
 											onFocus="this.select()" 
 											onClick="this.value='';" />
 											
