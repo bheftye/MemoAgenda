@@ -64,11 +64,11 @@
 							<h1>Crear Grupo</h1>
 							<br />
 							<s:actionerror />
-							<s:form action="buscarUsuario">
-								<s:textfield name="usuario.alias"
-									onFocus="this.select()"  label="Alias a buscar" />
+							<s:form action="crearGrupo">
+								<s:textfield name="grupo.nombre"
+									onFocus="this.select()"  label="Nombre del grupo" />
 
-								<s:submit cssClass="submit" value="Buscar" />
+								<s:submit cssClass="submit" value="Crear" />
 							</s:form>
 							
 							
