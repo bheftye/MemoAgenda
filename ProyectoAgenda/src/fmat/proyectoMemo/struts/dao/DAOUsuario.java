@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import fmat.proyectoMemo.struts.model.Usuario;
 
@@ -40,6 +41,36 @@ public class DAOUsuario extends DAOBase {
 			ex.printStackTrace();
 		}
 		return oprExitosa;
+	}
+	
+	public ArrayList<Usuario> buscarUsuario(String aliasABuscar, String aliasSesion){
+		String sqlBusqueda = "SELECT * FROM usuarios where alias like(%'"+aliasABuscar+"'%)";
+		ArrayList<Usuario> usuarios = new ArrayList<>();
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet resultados = statement.executeQuery(sqlBusqueda);
+			while(resultados.next()){
+				String alias = resultados.getString("alias");
+				String nombre = resultados.getString("nombre");
+				int idUsuario = resultados.getInt("id_usuario");
+				String correo = resultados.getString("correo");
+				if(aliasSesion.equals(alias)){
+					continue;
+				}
+				else{
+					Usuario usuario = new Usuario();
+					usuario.setAlias(alias);
+					usuario.setNombre(nombre);
+					usuario.setIdUsuario(idUsuario);
+					usuario.setCorreo(correo);
+					usuarios.add(usuario);
+				}
+			}
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return usuarios;
 	}
 	
 	public boolean aliasDisponible(String alias){

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-05-2014 a las 22:55:01
+-- Tiempo de generación: 02-06-2014 a las 01:54:09
 -- Versión del servidor: 5.6.15
 -- Versión de PHP: 5.4.24
 
@@ -59,9 +59,9 @@ CREATE TABLE IF NOT EXISTS `eventos` (
 
 CREATE TABLE IF NOT EXISTS `eventos_grupos` (
   `id_evento` int(11) NOT NULL,
-  `id_integrante` int(11) NOT NULL,
-  PRIMARY KEY (`id_evento`,`id_integrante`),
-  KEY `id_integrante` (`id_integrante`)
+  `id_grupo` int(11) NOT NULL,
+  PRIMARY KEY (`id_evento`,`id_grupo`),
+  KEY `eventos_grupos_ibfk_2` (`id_grupo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -71,9 +71,9 @@ CREATE TABLE IF NOT EXISTS `eventos_grupos` (
 --
 
 CREATE TABLE IF NOT EXISTS `eventos_integrantes` (
-  `id_grupo` int(11) NOT NULL,
+  `id_evento` int(11) NOT NULL,
   `id_integrante` int(11) NOT NULL,
-  PRIMARY KEY (`id_grupo`,`id_integrante`),
+  PRIMARY KEY (`id_evento`,`id_integrante`),
   KEY `id_integrante` (`id_integrante`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -183,10 +183,19 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombre` text COLLATE utf8_unicode_ci NOT NULL,
   `alias` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `correo` text COLLATE utf8_unicode_ci NOT NULL,
-  `contrasena` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `contrasena` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `foto` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `alias`, `correo`, `contrasena`, `foto`) VALUES
+(1, 'Brent Heftye', 'bheftye', 'bheftye92@gmail.com', '856990d52435912dc8a8e2516268e842', 'brentheftye.jpg'),
+(6, 'Brent Heftye', 'brent', 'bheftye92@gmail.com', '856990d52435912dc8a8e2516268e842', 'brent.jpg'),
+(7, 'Genny Centeno', 'genny', 'genny@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'genny.jpg');
 
 --
 -- Restricciones para tablas volcadas
@@ -196,22 +205,22 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Filtros para la tabla `amigos`
 --
 ALTER TABLE `amigos`
-  ADD CONSTRAINT `amigos_ibfk_2` FOREIGN KEY (`id_amigo`) REFERENCES `usuarios` (`id_usuario`),
-  ADD CONSTRAINT `amigos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `amigos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+  ADD CONSTRAINT `amigos_ibfk_2` FOREIGN KEY (`id_amigo`) REFERENCES `usuarios` (`id_usuario`);
 
 --
 -- Filtros para la tabla `eventos_grupos`
 --
 ALTER TABLE `eventos_grupos`
-  ADD CONSTRAINT `eventos_grupos_ibfk_2` FOREIGN KEY (`id_integrante`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `eventos_grupos_ibfk_2` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id_grupo`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `eventos_grupos_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id_evento`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `eventos_integrantes`
 --
 ALTER TABLE `eventos_integrantes`
-  ADD CONSTRAINT `eventos_integrantes_ibfk_2` FOREIGN KEY (`id_integrante`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `eventos_integrantes_ibfk_1` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id_grupo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `eventos_integrantes_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id_evento`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `eventos_integrantes_ibfk_2` FOREIGN KEY (`id_integrante`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `grupos`
@@ -223,8 +232,8 @@ ALTER TABLE `grupos`
 -- Filtros para la tabla `integrantes`
 --
 ALTER TABLE `integrantes`
-  ADD CONSTRAINT `integrantes_ibfk_2` FOREIGN KEY (`id_integrante`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `integrantes_ibfk_1` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id_grupo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `integrantes_ibfk_1` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id_grupo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `integrantes_ibfk_2` FOREIGN KEY (`id_integrante`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `listas_tareas`
@@ -242,15 +251,15 @@ ALTER TABLE `lista_archivos`
 -- Filtros para la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  ADD CONSTRAINT `notificaciones_ibfk_2` FOREIGN KEY (`id_receptor`) REFERENCES `usuarios` (`id_usuario`),
-  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`id_emisor`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`id_emisor`) REFERENCES `usuarios` (`id_usuario`),
+  ADD CONSTRAINT `notificaciones_ibfk_2` FOREIGN KEY (`id_receptor`) REFERENCES `usuarios` (`id_usuario`);
 
 --
 -- Filtros para la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  ADD CONSTRAINT `tareas_ibfk_2` FOREIGN KEY (`id_responsable`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`id_lista`) REFERENCES `listas_tareas` (`id_lista`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`id_lista`) REFERENCES `listas_tareas` (`id_lista`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_2` FOREIGN KEY (`id_responsable`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
