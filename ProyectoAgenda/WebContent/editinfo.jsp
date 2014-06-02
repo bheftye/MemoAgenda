@@ -50,7 +50,7 @@
 										</p></td>
 									<td width="200px" align="left"></td>
 									<td width="200px" align="left"><strong>Contactos:
-									</strong>44</td>
+									</strong><s:property value="#session['usuario'].contactos.size"/></td>
 									<td><strong>Grupos: </strong> 6</td>
 								</tr>
 							</table>

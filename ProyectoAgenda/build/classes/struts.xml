@@ -35,8 +35,20 @@
 			method="buscarUsuario">
 			<result name="addContact">/addcontact.jsp</result>
 		</action>
+<<<<<<< HEAD
 
 		<action name="modificarContrasena" class="fmat.proyectoMemo.struts.action.UsuarioAction"
+=======
+		
+		<action name="agregarAmigo"
+			class="fmat.proyectoMemo.struts.action.UsuarioAction"
+			method="agregarAmigo">
+			<result name="addContact">/addcontact.jsp</result>
+		</action>
+		
+		<action name="modificarContrasena"
+			class="fmat.proyectoMemo.struts.action.UsuarioAction"
+>>>>>>> e1cd82936d1c906eaf85f0111d35fed916a166dc
 			method="modificarContrasena">
 			<result name="editInfo">/editinfo.jsp</result>
 			<result name="login">/login.jsp</result>

@@ -43,8 +43,47 @@ public class DAOUsuario extends DAOBase {
 		return oprExitosa;
 	}
 	
+	public boolean sonAmigos(int idUsuarioA, int idUsuarioB){
+		String sqlAmigos = "select usuarios.id_usuario, nombre from (select id_usuario from amigos where id_amigo = "+idUsuarioA+" union select id_amigo from amigos where id_usuario= "+idUsuarioA+") AS amiguis join usuarios on amiguis.id_usuario = usuarios.id_usuario";
+		boolean sonAmigos = false;
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet resultados = statement.executeQuery(sqlAmigos);
+			while(resultados.next()){
+				int idUsuario = resultados.getInt("usuarios.id_usuario");
+				if(idUsuario == idUsuarioB){
+					sonAmigos = true;
+					break;
+				}
+			}
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return sonAmigos;
+	}
+	
+	public boolean agregarAmigo(int idUsuarioA, int idUsuarioB){
+		boolean oprExitosa = false;
+		String sql = "INSERT INTO `amigos`("
+				+ "`id_amigo`, `id_usuario`, `status`) "
+				+ "VALUES (\"" + idUsuarioA + "\",\""
+				+ idUsuarioB + "\", 0)";
+		try {
+			Statement statement = connection.createStatement();
+			int renglonesAfectados = statement.executeUpdate(sql);
+			if(renglonesAfectados != 0){
+				oprExitosa = true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return oprExitosa;
+	}
+	
+	
 	public ArrayList<Usuario> buscarUsuario(String aliasABuscar, String aliasSesion){
-		String sqlBusqueda = "SELECT * FROM usuarios where alias like(%'"+aliasABuscar+"'%)";
+		String sqlBusqueda = "SELECT * FROM usuarios where alias like '%"+aliasABuscar+"%'";
 		ArrayList<Usuario> usuarios = new ArrayList<>();
 		try{
 			Statement statement = connection.createStatement();
@@ -165,7 +204,30 @@ public class DAOUsuario extends DAOBase {
 	 * results.getInt("ocupado")); } } catch (SQLException ex) {
 	 * ex.printStackTrace(); } return resultSeat; }
 	 */
-
+	
+	public ArrayList<Usuario> obtenerContactosPorId(int idUsuario){
+		String sqlAmigos = "select usuarios.id_usuario, alias, nombre from (select id_usuario from amigos where id_amigo = "+idUsuario+" union select id_amigo from amigos where id_usuario= "+idUsuario+") AS amiguis join usuarios on amiguis.id_usuario = usuarios.id_usuario";
+		ArrayList<Usuario> contactos = new ArrayList<>();
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet resultados = statement.executeQuery(sqlAmigos);
+			while(resultados.next()){
+				int idUsuarioC = resultados.getInt("usuarios.id_usuario");
+				String alias = resultados.getString("alias");
+				String nombre = resultados.getString("nombre");
+				Usuario contacto = new Usuario();
+				contacto.setAlias(alias);
+				contacto.setNombre(nombre);
+				contacto.setIdUsuario(idUsuarioC);
+				contactos.add(contacto);
+			}
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return contactos;
+	}
+	
 	public Usuario obtenerUsuarioPorId(int idUsuario) {
 		Usuario usuario = null;
 		String sql = "SELECT * FROM `usuarios` WHERE `id_usuario` = "
@@ -174,7 +236,9 @@ public class DAOUsuario extends DAOBase {
 			Statement statement = connection.createStatement();
 			ResultSet resultados = statement.executeQuery(sql);
 			while (resultados.next()) {
-				usuario = new Usuario(resultados.getInt("id_usuario"),resultados.getString("alias"), resultados.getString("contrasena"),resultados.getString("nombre"),resultados.getString("correo"),resultados.getString("foto"));
+				ArrayList<Usuario> contactos = new ArrayList<>();
+				contactos = this.obtenerContactosPorId(resultados.getInt("id_usuario"));
+				usuario = new Usuario(resultados.getInt("id_usuario"),resultados.getString("alias"), resultados.getString("contrasena"),resultados.getString("nombre"),resultados.getString("correo"),resultados.getString("foto"), contactos);
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -191,7 +255,9 @@ public class DAOUsuario extends DAOBase {
 			Statement statement = connection.createStatement();
 			ResultSet resultados = statement.executeQuery(sql);
 			while (resultados.next()) {
-				usuario = new Usuario(resultados.getInt("id_usuario"),resultados.getString("alias"), resultados.getString("contrasena"),resultados.getString("nombre"),resultados.getString("correo"),resultados.getString("foto"));
+				ArrayList<Usuario> contactos = new ArrayList<>();
+				contactos = this.obtenerContactosPorId(resultados.getInt("id_usuario"));
+				usuario = new Usuario(resultados.getInt("id_usuario"),resultados.getString("alias"), resultados.getString("contrasena"),resultados.getString("nombre"),resultados.getString("correo"),resultados.getString("foto"),contactos);
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
