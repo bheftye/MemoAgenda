@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="WEB-INF/utils.tld" prefix="utils"%>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -86,8 +88,8 @@
 									</tr>
 									<tr>
 										<td><label>Invitar a usuarios:</label></td>
-										<td><input type="text" name="id_integrante" size="31"></td>
 									</tr>
+										<utils:showFriends id_usuario='${usuario.idUsuario}' />
 									<tr>
 										<td></td>
 										<td align="right"><input type="submit"

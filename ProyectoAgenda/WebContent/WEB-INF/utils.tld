@@ -21,4 +21,15 @@
 		<tagclass>fmat.proyectoMemo.tags.GenerateNavigation</tagclass>
 		<bodycontent>empty</bodycontent>
 	</tag>
+	<tag>
+		<name>showFriends</name>
+		<tagclass>fmat.proyectoMemo.tags.ShowFriends</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>id_usuario</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>String</type>
+		</attribute>
+	</tag>
 </taglib>
