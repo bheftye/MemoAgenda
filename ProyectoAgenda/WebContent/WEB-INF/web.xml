@@ -23,18 +23,6 @@
 		<servlet-name>addEvent</servlet-name>
 		<url-pattern>/addEvent</url-pattern>
 	</servlet-mapping>
-
-	
-		<servlet>
-		<description></description>
-		<display-name>addUserToEvent</display-name>
-		<servlet-name>addUserToEvent</servlet-name>
-		<servlet-class>fmat.proyectoMemo.servlets.AddUserToEventServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>addUserToEvent</servlet-name>
-		<url-pattern>/addUserToEvent</url-pattern>
-	</servlet-mapping>
 	
 	<filter>
 		<filter-name>struts2</filter-name>

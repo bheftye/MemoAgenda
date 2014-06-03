@@ -43,7 +43,8 @@
 			<div class="body">
 				<div class="login">
 					Bienvenido
-					<s:property value="#session['usuario'].alias" /> |
+					<s:property value="#session['usuario'].alias" />
+					|
 					<s:a href="index.jsp" onClick="cerrarSesion">Cerrar sesión</s:a>
 				</div>
 				<div class="content-blog">
@@ -52,12 +53,13 @@
 							<h3>Agregar evento</h3>
 							<jsp:useBean id="usuario" scope="session"
 								class="fmat.proyectoMemo.struts.model.Usuario" />
+							<div style="color: red">${errorMessage}</div>
 							<form action="addEvent" method="post">
 								<input type="hidden" name="idUsuario"
 									value="${usuario.idUsuario}">
 								<table style="margin-left: 10px;">
 									<tr>
-										<td><label>Nombre del evento: </label></td>
+										<td><label>*Nombre del evento: </label></td>
 										<td><input type="text" name="nombre" size="31"></td>
 									</tr>
 									<tr>
@@ -65,29 +67,29 @@
 										<td><textarea name="descripcion" cols="23" rows="10"></textarea></td>
 									</tr>
 									<tr>
-										<td><label>Lugar:</label></td>
+										<td><label>*Lugar:</label></td>
 										<td><input type="text" name="ubicacion" size="31"></td>
 									</tr>
 									<tr>
-										<td><label>Fecha de inicio:</label></td>
+										<td><label>*Fecha de inicio:</label></td>
 										<td><input type="text" name="fecha_inicio"
 											id="datepicker" size="31"></td>
 									</tr>
 									<tr>
-										<td><label>Fecha de finalización:</label></td>
+										<td><label>*Fecha de finalización:</label></td>
 										<td><input type="text" name="fecha_final"
 											id="datepickers" size="31"></td>
 									</tr>
 									<tr>
-										<td><label>Hora de inicio:</label></td>
+										<td><label>*Hora de inicio:</label></td>
 										<td><input type="text" name="hora_inicio" size="31"></td>
 									</tr>
 									<tr>
-										<td><label>Hora final:</label></td>
+										<td><label>*Hora final:</label></td>
 										<td><input type="text" name="hora_final" size="31"></td>
 									</tr>
 									<tr>
-										<td><label>Repetición de evento:</label></td>
+										<td><label>*Repetición de evento:</label></td>
 									</tr>
 									<tr>
 										<td></td>
@@ -99,23 +101,27 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Cada semana</td>
+										<td><input type="radio" name="repeticion" value="ninguno">Cada
+											semana</td>
 									</tr>
 									<tr>
 										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Cada mes</td>
+										<td><input type="radio" name="repeticion" value="ninguno">Cada
+											mes</td>
 									</tr>
 									<tr>
 										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Cada año</td>
-									</tr>									<tr>
+										<td><input type="radio" name="repeticion" value="ninguno">Cada
+											año</td>
+									</tr>
+									<tr>
 										<td><label>Invitar usuarios:</label></td>
 									</tr>
 									<utils:showFriends />
-									<tr>
+									<!-- 	<tr>
 										<td><label>Invitar grupos:</label></td>
 									</tr>
-									<utils:showGroups />
+									  	<utils:showGroups />-->
 									<tr>
 										<td></td>
 										<td align="right"><input type="submit"
@@ -136,7 +142,8 @@
 								</form>
 							</div>
 							<div class="blog-categories">
-								<a href="addevent.jsp"><h3>Agregar evento</h3></a>
+								<a href="addevent.jsp" style="text-decoration: none"><h3>Agregar
+										evento</h3></a>
 							</div>
 							<div>
 								<h3>Agregar lista de tareas</h3>

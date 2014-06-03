@@ -20,7 +20,7 @@ public class AddEventServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	public AddEventServlet() {
 
 	}
@@ -35,20 +35,42 @@ public class AddEventServlet extends HttpServlet {
 		String fecha_final = request.getParameter("fecha_final");
 		String hora_inicio =  request.getParameter("hora_inicio");
 		String hora_final =  request.getParameter("hora_final");
-		String id_integrante = request.getParameter("id_integrante");
-		String id_grupo= request.getParameter("id_grupo");
-		
+
+		//Obteniendo el arreglo de integrantes
+		String[] integrantes = request.getParameterValues("integrantes");
+		String[] grupos = request.getParameterValues("grupos");
+
+		//Obteniendo el arreglo de recordatorio
+		String[] recordatorio = request.getParameterValues("frutas");
+
+		//	printWriter.print("Tus frutas favoritas son: ");
+
+		/*	for(int i = 0; i<recordatorio.length; i++){
+		//	printWriter.print(recordatorio[i]+ ","+ "<br/>");			
+		}
+
+		for(int i = 0; i<integrantes.length; i++){
+	//		printWriter.print(integrantes[i]+ ","+ "<br/>");			
+		}*/
+
+		if(nombre.isEmpty() || ubicacion.isEmpty() || fecha_inicio.isEmpty() || fecha_final.isEmpty() || hora_inicio.isEmpty()
+				|| hora_final.isEmpty()){
+			request.setAttribute("errorMessage", "Quedaron campos obligatorios vacíos... <br /><br />");
+			request.getRequestDispatcher("addevent.jsp").forward(request, response);
+		}
+
+
 		System.out.println("Id creador:" + id_creador );
 		System.out.println("Nombre del evento:" + nombre );
 		System.out.println("Ubicacion:" + ubicacion );
-		
+
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		doIt(request, response);
 	}
-	
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		doIt(request, response);
