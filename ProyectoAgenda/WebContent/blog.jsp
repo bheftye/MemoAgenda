@@ -30,7 +30,7 @@
 			<div class="body">
 				<div class="login">
 					Bienvenido
-					<s:property value="#session['usuario'].alias" />
+					<s:property value="#session['usuario'].alias" /> |
 					<s:a href="index.jsp" onClick="cerrarSesion">Cerrar sesión</s:a>
 				</div>
 				<div class="content-blog">

@@ -48,6 +48,14 @@
 			<result name="editInfo">/editinfo.jsp</result>
 			<result name="login">/login.jsp</result>
 		</action>
+		
+		<action name="crearGrupo"
+			class="fmat.proyectoMemo.struts.action.GrupoAction" method="crearGrupo">
+			<result name="editGroup">/editgroup.jsp</result>
+			<result name="createGroup">/addgroup.jsp</result>
+		</action>
+		
+		
 
 		<action name="cerrarSesion" class="fmat.proyectoMemo.struts.action.UsuarioAction"
 			method="cerrarSesion">
