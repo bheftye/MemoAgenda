@@ -3,8 +3,10 @@ package fmat.proyectoMemo.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.WebServlet;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @WebServlet("/addEvent")
 public class AddEventServlet extends HttpServlet {
@@ -41,25 +45,50 @@ public class AddEventServlet extends HttpServlet {
 		String[] grupos = request.getParameterValues("grupos");
 
 		//Obteniendo el arreglo de recordatorio
-		String[] recordatorio = request.getParameterValues("frutas");
+		String[] repeticion = request.getParameterValues("repeticion");
+		
+		String hasta_fecha= request.getParameter("hasta_fecha");
 
-		//	printWriter.print("Tus frutas favoritas son: ");
+		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+		 Date fecha_inicial = null, fecha_finali = null, hasta_fechaa = null;
+		 try {
+
+		     fecha_inicial = (Date) formatoDelTexto.parse(fecha_inicio);
+		     fecha_finali = (Date) formatoDelTexto.parse(fecha_final);
+		     hasta_fechaa = (Date) formatoDelTexto.parse(hasta_fecha);
+		 } catch (ParseException | java.text.ParseException ex) {
+		     ex.printStackTrace();
+		 }
+
 
 		/*	for(int i = 0; i<recordatorio.length; i++){
 		//	printWriter.print(recordatorio[i]+ ","+ "<br/>");			
-		}
-
-		for(int i = 0; i<integrantes.length; i++){
-	//		printWriter.print(integrantes[i]+ ","+ "<br/>");			
 		}*/
+
 
 		if(nombre.isEmpty() || ubicacion.isEmpty() || fecha_inicio.isEmpty() || fecha_final.isEmpty() || hora_inicio.isEmpty()
 				|| hora_final.isEmpty()){
 			request.setAttribute("errorMessage", "Quedaron campos obligatorios vacíos... <br /><br />");
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);
 		}else{
-			
-			
+			String repeticion_str = repeticion[0];
+			switch(repeticion_str){
+			case "0": 
+				System.out.println("Repeticion: Ninguno");				
+				break;
+			case "1": 
+				System.out.println("Repeticion: Diario");				
+				break;
+			case "2": 
+				System.out.println("Repeticion: Semanal");				
+				break;
+			case "3": 
+				System.out.println("Repeticion: Mensual");				
+				break;
+			case "4": 
+				System.out.println("Repeticion: Anual");				
+				break;				
+			}
 		}
 
 

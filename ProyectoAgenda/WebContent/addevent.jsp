@@ -17,6 +17,7 @@
 	$(function() {
 		$("#datepicker").datepicker();
 		$("#datepickers").datepicker();
+		$("#datepicker3").datepicker();
 
 	});
 </script>
@@ -93,26 +94,31 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Ninguno</td>
+										<td><input type="radio" name="repeticion" value="0">Ninguno</td>
 									</tr>
 									<tr>
 										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Diario</td>
+										<td><input type="radio" name="repeticion" value="1">Diario</td>
 									</tr>
 									<tr>
 										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Cada
+										<td><input type="radio" name="repeticion" value="2">Cada
 											semana</td>
 									</tr>
 									<tr>
 										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Cada
+										<td><input type="radio" name="repeticion" value="3">Cada
 											mes</td>
 									</tr>
 									<tr>
 										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Cada
+										<td><input type="radio" name="repeticion" value="4">Cada
 											año</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>Hasta: <input type="text" name="hasta_fecha"
+											id="datepicker3" size="31"></td>
 									</tr>
 									<tr>
 										<td><label>Invitar usuarios:</label></td>

@@ -40,17 +40,19 @@ public class RecoverEventInfoServlet extends HttpServlet{
 		String id_integrante = request.getParameter("id_integrante");
 		String id_creador = request.getParameter("id_creador");
 		String id_grupo= request.getParameter("id_grupo");
+		String hasta_fecha= request.getParameter("hasta_fecha");
+
 
 
 		Evento event  = new Evento();
 		
 		 SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-		 Date fecha_inicial = null, fecha_finali = null;
+		 Date fecha_inicial = null, fecha_finali = null, hasta_fechaa = null;
 		 try {
 
 		     fecha_inicial = (Date) formatoDelTexto.parse(fecha_inicio);
 		     fecha_finali = (Date) formatoDelTexto.parse(fecha_final);
-
+		     hasta_fechaa = (Date) formatoDelTexto.parse(hasta_fecha);
 		 } catch (ParseException | java.text.ParseException ex) {
 		     ex.printStackTrace();
 		 }
