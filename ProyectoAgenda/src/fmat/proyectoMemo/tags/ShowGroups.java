@@ -25,14 +25,15 @@ public class ShowGroups extends TagSupport {
 
 	private void generate(JspWriter out, HttpSession session) {
 		// TODO Auto-generated method stub
-		String preffix ="<tr><td></td><td>";
+		String preffix ="<tr><td></td><td><input type=\"checkbox\" name=\"grupos\" value=\"";
+		String ffix= "\">";
 		String suffix ="</td></tr>";
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		ArrayList<Usuario> contactos = usuario.getContactos();
 		try {
 			for (int i = 0; i < contactos.size(); i++) {
 				Usuario contacto = (Usuario) contactos.get(i);
-				out.println(preffix + contacto.getNombre() + suffix);
+				out.println(preffix +contacto.getIdUsuario() + ffix + contacto.getNombre() + suffix);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

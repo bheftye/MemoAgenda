@@ -27,13 +27,13 @@ public class ShowFriends extends TagSupport {
 		// TODO Auto-generated method stub
 		String preffix ="<tr><td></td><td><input type=\"checkbox\" name=\"integrantes\" value=\"";
 		String ffix= "\">";
-		String suffix ="</td></tr>";
+		String suffix ="]</td></tr>";
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		ArrayList<Usuario> contactos = usuario.getContactos();
 		try {
 			for (int i = 0; i < contactos.size(); i++) {
 				Usuario contacto = (Usuario) contactos.get(i);
-				out.println(preffix +contacto.getIdUsuario() + ffix + contacto.getNombre() + suffix);
+				out.println(preffix +contacto.getIdUsuario() + ffix + contacto.getNombre() +" [" +contacto.getAlias() + suffix);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
