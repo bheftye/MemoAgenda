@@ -38,7 +38,6 @@ public class AddEventServlet extends HttpServlet {
 		String fecha_final = request.getParameter("fecha_final");
 		String hora_inicio =  request.getParameter("hora_inicio");
 		String hora_final =  request.getParameter("hora_final");
-		String repeat = null;
 
 		//Obteniendo el arreglo de integrantes
 		String[] integrantes = request.getParameterValues("integrantes");
@@ -50,7 +49,6 @@ public class AddEventServlet extends HttpServlet {
 
 		/*SimpleDateFormat formatoDelTexto = new SimpleDateFormat("MM/dd/yyyy");
 		Date fecha_inicial = null, fecha_finali = null, hasta_fechaa = null;*/
-		repeat = repeticion[0]+"";
 
 		if(nombre.isEmpty() || ubicacion.isEmpty() || fecha_inicio.isEmpty() || fecha_final.isEmpty() || hora_inicio.isEmpty()
 				|| hora_final.isEmpty()){
@@ -59,16 +57,8 @@ public class AddEventServlet extends HttpServlet {
 		}else{
 			boolean result = true;
 			if((integrantes == null)&& (grupos == null)){	
-				if(repeat.equals("0")){
 					Evento evento = new Evento(id_creador,nombre, fecha_inicio,fecha_final, hora_inicio, hora_final, ubicacion);
-					result = daoEv.agregarEvento(evento, repeat );
-					}else{
-						String hasta_fecha= request.getParameter("hasta_fecha");
-						Evento evento = new Evento(id_creador,nombre, fecha_inicio,fecha_final, hora_inicio, hora_final, ubicacion);
-				}
-
-
-
+					result = daoEv.agregarEvento(evento );
 				if(result){
 					request.getRequestDispatcher("blog.jsp").forward(request, response);
 				}else{
@@ -89,7 +79,6 @@ public class AddEventServlet extends HttpServlet {
 		System.out.println("Ubicacion:" + ubicacion );
 		System.out.println("Fecha inicio:" + fecha_inicio );
 		System.out.println("Fecha final:" + fecha_final );
-		System.out.println("Repeticion:" + repeat );
 
 	}
 
