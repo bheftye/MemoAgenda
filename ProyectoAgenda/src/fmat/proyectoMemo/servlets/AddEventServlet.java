@@ -57,6 +57,9 @@ public class AddEventServlet extends HttpServlet {
 				|| hora_final.isEmpty()){
 			request.setAttribute("errorMessage", "Quedaron campos obligatorios vacíos... <br /><br />");
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);
+		}else{
+			
+			
 		}
 
 

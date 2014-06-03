@@ -43,7 +43,6 @@
 									<utils:setDate />
 								<p>
 								<form>
-
 									<table width="500" border="2">
 										<utils:showCalendar />
 									</table>
