@@ -2,26 +2,18 @@ package fmat.proyectoMemo.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/addEvent")
-public class AddEventServlet extends HttpServlet {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	public AddEventServlet() {
+@SuppressWarnings("serial")
+@WebServlet("/addUserToEvent")
+public class AddUserToEventServlet extends HttpServlet {
+
+	public AddUserToEventServlet() {
 
 	}
 	public void doIt(HttpServletRequest request, HttpServletResponse response)

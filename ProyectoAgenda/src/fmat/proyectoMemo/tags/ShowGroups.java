@@ -25,7 +25,7 @@ public class ShowGroups extends TagSupport {
 
 	private void generate(JspWriter out, HttpSession session) {
 		// TODO Auto-generated method stub
-		String preffix ="<tr><td>";
+		String preffix ="<tr><td></td><td>";
 		String suffix ="</td></tr>";
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		ArrayList<Usuario> contactos = usuario.getContactos();
