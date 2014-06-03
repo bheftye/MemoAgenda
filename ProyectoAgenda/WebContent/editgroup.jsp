@@ -61,15 +61,16 @@
 					</div>
 					<div>
 						<div>
-							<h1>Crear Grupo</h1>
+							<h1>Editar Grupo</h1>
 							<br />
 							<s:actionerror />
-							<s:form action="crearGrupo">
+							<s:form action="modificarGrupo">
 								<s:textfield name="grupo.nombre"
 									onFocus="this.select()"  label="Nombre del grupo" />
 								<s:hidden name="grupo.idUsuarioCreador" value="%{#session['usuario'].idUsuario}" />
-								<s:submit cssClass="submit" value="Crear" />
+								<s:submit cssClass="submit" value="Guardar" />
 							</s:form>
+							
 							
 						</div>
 						<div class="sidebar">
@@ -80,7 +81,7 @@
 								<a href="addcontact.jsp" style="text-decoration:none;"><h3>A&ntilde;adir contacto</h3></a>
 							</div>
 							<div class="section">
-								<h3>Crear grupo</h3>
+								<a href="addgroup.jsp" style="text-decoration:none;"><h3>Crear grupo</h3></a>
 							</div>
 						</div>
 					</div>
