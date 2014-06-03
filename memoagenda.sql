@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-06-2014 a las 01:54:09
+-- Tiempo de generación: 03-06-2014 a las 00:17:03
 -- Versión del servidor: 5.6.15
 -- Versión de PHP: 5.4.24
 
@@ -33,6 +33,14 @@ CREATE TABLE IF NOT EXISTS `amigos` (
   PRIMARY KEY (`id_usuario`,`id_amigo`),
   KEY `id_amigo` (`id_amigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `amigos`
+--
+
+INSERT INTO `amigos` (`id_usuario`, `id_amigo`, `status`) VALUES
+(6, 1, 0),
+(6, 7, 0);
 
 -- --------------------------------------------------------
 
