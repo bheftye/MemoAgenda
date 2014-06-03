@@ -55,6 +55,11 @@
 			<result name="createGroup">/addgroup.jsp</result>
 		</action>
 		
+		<action name="agregarIntegrante"
+			class="fmat.proyectoMemo.struts.action.GrupoAction" method="agregarIntegrante">
+			<result name="editGroup">/editgroup.jsp</result>
+		</action>
+		
 		
 
 		<action name="cerrarSesion" class="fmat.proyectoMemo.struts.action.UsuarioAction"
