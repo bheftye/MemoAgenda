@@ -2,19 +2,20 @@ package fmat.proyectoMemo.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+=======
+>>>>>>> c4b63c7661766b1835f2b4337ed01659454a01dc
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.annotation.WebServlet;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -68,7 +69,7 @@ public class AddEventServlet extends HttpServlet {
 
 		if(nombre.isEmpty() || ubicacion.isEmpty() || fecha_inicio.isEmpty() || fecha_final.isEmpty() || hora_inicio.isEmpty()
 				|| hora_final.isEmpty()){
-			request.setAttribute("errorMessage", "Quedaron campos obligatorios vacíos... <br /><br />");
+			request.setAttribute("errorMessage", "Quedaron campos obligatorios vacï¿½os... <br /><br />");
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);
 		}else{
 			String repeticion_str = repeticion[0];
