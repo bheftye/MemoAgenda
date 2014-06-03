@@ -87,13 +87,39 @@
 										<td><input type="text" name="hora_final" size="31"></td>
 									</tr>
 									<tr>
-										<td><label>Invitar a usuarios:</label></td>
+										<td><label>Repetición de evento:</label></td>
 									</tr>
-										<utils:showFriends id_usuario='${usuario.idUsuario}' />
+									<tr>
+										<td></td>
+										<td><input type="radio" name="repeticion" value="ninguno">Ninguno</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="radio" name="repeticion" value="ninguno">Diario</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="radio" name="repeticion" value="ninguno">Cada semana</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="radio" name="repeticion" value="ninguno">Cada mes</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="radio" name="repeticion" value="ninguno">Cada año</td>
+									</tr>									<tr>
+										<td><label>Invitar usuarios:</label></td>
+									</tr>
+									<utils:showFriends />
+									<tr>
+										<td><label>Invitar grupos:</label></td>
+									</tr>
+									<utils:showGroups />
 									<tr>
 										<td></td>
 										<td align="right"><input type="submit"
-											value="Agregar evento"></td>
+											value="Agregar evento"><br /> <br /> <br /></td>
 									</tr>
 								</table>
 							</form>

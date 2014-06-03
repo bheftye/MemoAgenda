@@ -28,7 +28,7 @@ public class RecoverEventInfoServlet extends HttpServlet{
 	 */
 	protected void doIt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession(false);
 
 		String id_evento = request.getParameter("id_evento");
 		String nombre = request.getParameter("nombre") ;

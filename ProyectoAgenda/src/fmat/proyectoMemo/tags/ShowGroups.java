@@ -12,7 +12,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import fmat.proyectoMemo.struts.model.Usuario;
 
 @SuppressWarnings("serial")
-public class ShowFriends extends TagSupport {
+public class ShowGroups extends TagSupport {
 
 	public int doStartTag() throws JspException {
 		HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();  
