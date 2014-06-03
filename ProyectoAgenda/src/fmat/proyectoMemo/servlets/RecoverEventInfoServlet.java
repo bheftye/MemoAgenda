@@ -59,8 +59,8 @@ public class RecoverEventInfoServlet extends HttpServlet{
 		
 		event.setId_evento(Integer.parseInt(id_evento));
 		event.setNombre(nombre);
-		event.setFecha_inicio(fecha_inicial);
-		event.setFecha_final(fecha_finali);
+		event.setFecha_inicio(fecha_inicio);
+		event.setFecha_final(fecha_final);
 		event.setHora_inicio(hora_inicio);
 		event.setHora_final(hora_final);
 		event.setUbicacion(ubicacion);

@@ -1,24 +1,24 @@
 package fmat.proyectoMemo.struts.model;
 
-import java.sql.Date;
 
 public class Evento {
 	private int id_evento;
 	private String nombre;
-	private Date fecha_inicio, fecha_final;
+	private String fecha_inicio, fecha_final;
 	private String hora_inicio, hora_final;
 	private String ubicacion;
 	private int id_integrante;
 	private int id_creador;
 	private int id_grupo;
+	private String recordatorio;
 
 	public Evento() {
 		super();
 	}
 
 
-	public Evento(int id_evento,int id_creador, String nombre, Date fecha_inicio,
-			Date fecha_final, String hora_inicio, String hora_final,
+	public Evento(int id_evento,int id_creador, String nombre, String fecha_inicio,
+			String fecha_final, String hora_inicio, String hora_final,
 			String ubicacion) {
 		super();
 		this.id_evento = id_evento;
@@ -30,11 +30,24 @@ public class Evento {
 		this.ubicacion = ubicacion;
 		this.id_creador = id_creador;
 	}
+	
+	public Evento(int id_creador, String nombre, String fecha_inicio,
+			String fecha_final, String hora_inicio, String hora_final,
+			String ubicacion) {
+		super();
+		this.nombre = nombre;
+		this.fecha_inicio = fecha_inicio;
+		this.fecha_final = fecha_final;
+		this.hora_inicio = hora_inicio;
+		this.hora_final = hora_final;
+		this.ubicacion = ubicacion;
+		this.id_creador = id_creador;
+	}
 
 
 
-	public Evento(int id_evento,int id_creador, String nombre, Date fecha_inicio,
-			Date fecha_final, String hora_inicio, String hora_final,
+	public Evento(int id_evento,int id_creador, String nombre, String fecha_inicio,
+			String fecha_final, String hora_inicio, String hora_final,
 			String ubicacion, int id_grupo) {
 		super();
 		this.id_evento = id_evento;
@@ -49,8 +62,8 @@ public class Evento {
 	}
 
 
-	public Evento(int id_evento, String nombre, Date fecha_inicio,
-			Date fecha_final, String hora_inicio, String hora_final,
+	public Evento(int id_evento, String nombre, String fecha_inicio,
+			String fecha_final, String hora_inicio, String hora_final,
 			String ubicacion, int id_integrante, int id_creador) {
 		super();
 		this.id_evento = id_evento;
@@ -65,8 +78,8 @@ public class Evento {
 	}
 
 
-	public Evento(int id_evento, String nombre, Date fecha_inicio,
-			Date fecha_final, String hora_inicio, String hora_final,
+	public Evento(int id_evento, String nombre, String fecha_inicio,
+			String fecha_final, String hora_inicio, String hora_final,
 			String ubicacion, int id_integrante, int id_creador, int id_grupo) {
 		super();
 		this.id_evento = id_evento;
@@ -94,16 +107,16 @@ public class Evento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFecha_inicio() {
+	public String getFecha_inicio() {
 		return fecha_inicio;
 	}
-	public void setFecha_inicio(Date fecha_inicio) {
+	public void setFecha_inicio(String fecha_inicio) {
 		this.fecha_inicio = fecha_inicio;
 	}
-	public Date getFecha_final() {
+	public String getFecha_final() {
 		return fecha_final;
 	}
-	public void setFecha_final(Date fecha_final) {
+	public void setFecha_final(String fecha_final) {
 		this.fecha_final = fecha_final;
 	}
 	public String getHora_inicio() {
@@ -141,6 +154,16 @@ public class Evento {
 	}
 	public void setId_grupo(int id_grupo) {
 		this.id_grupo = id_grupo;
+	}
+
+
+	public String getRecordatorio() {
+		return recordatorio;
+	}
+
+
+	public void setRecordatorio(String recordatorio) {
+		this.recordatorio = recordatorio;
 	}
 
 

@@ -30,7 +30,7 @@ public abstract class DAOBase {
     private final String HOST = "localhost";
     private final String DATABASE = "memoagenda";
     private final String USER = "root";
-    private final String PASSWORD = "heftye92";
+    private final String PASSWORD = "web1234";
     private final String PORT = "3306";
     private final String DRIVER = "com.mysql.jdbc.Driver";
     private final String CONNECTION_STRING = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
