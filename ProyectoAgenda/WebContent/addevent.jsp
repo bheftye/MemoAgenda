@@ -90,44 +90,13 @@
 										<td><input type="text" name="hora_final" size="31"></td>
 									</tr>
 									<tr>
-										<td><label>*Repetición de evento:</label></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="0">Ninguno</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="1">Diario</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="2">Cada
-											semana</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="3">Cada
-											mes</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="4">Cada
-											año</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>Hasta: <input type="text" name="hasta_fecha"
-											id="datepicker3" size="31"></td>
-									</tr>
-									<tr>
 										<td><label>Invitar usuarios:</label></td>
 									</tr>
 									<utils:showFriends />
-									<!-- 	<tr>
+									<tr>
 										<td><label>Invitar grupos:</label></td>
 									</tr>
-									  	<utils:showGroups />-->
+									<utils:showGroups />
 									<tr>
 										<td></td>
 										<td align="right"><input type="submit"
