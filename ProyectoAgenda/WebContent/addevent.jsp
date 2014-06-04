@@ -93,10 +93,10 @@
 										<td><label>Invitar usuarios:</label></td>
 									</tr>
 									<utils:showFriends />
-									<!-- 	<tr>
+									<tr>
 										<td><label>Invitar grupos:</label></td>
 									</tr>
-									  	<utils:showGroups />-->
+									<utils:showGroups />
 									<tr>
 										<td></td>
 										<td align="right"><input type="submit"
