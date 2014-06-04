@@ -2,20 +2,23 @@ package fmat.proyectoMemo.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.annotation.WebServlet;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
+import fmat.proyectoMemo.struts.dao.DAOEvento;
+import fmat.proyectoMemo.struts.model.Evento;
 
 @WebServlet("/addEvent")
 public class AddEventServlet extends HttpServlet {
+	DAOEvento daoEv = new DAOEvento();
 	/**
 	 * 
 	 */
@@ -41,31 +44,41 @@ public class AddEventServlet extends HttpServlet {
 		String[] grupos = request.getParameterValues("grupos");
 
 		//Obteniendo el arreglo de recordatorio
-		String[] recordatorio = request.getParameterValues("frutas");
+		String[] repeticion = request.getParameterValues("repeticion");
 
-		//	printWriter.print("Tus frutas favoritas son: ");
 
-		/*	for(int i = 0; i<recordatorio.length; i++){
-		//	printWriter.print(recordatorio[i]+ ","+ "<br/>");			
-		}
-
-		for(int i = 0; i<integrantes.length; i++){
-	//		printWriter.print(integrantes[i]+ ","+ "<br/>");			
-		}*/
+		/*SimpleDateFormat formatoDelTexto = new SimpleDateFormat("MM/dd/yyyy");
+		Date fecha_inicial = null, fecha_finali = null, hasta_fechaa = null;*/
 
 		if(nombre.isEmpty() || ubicacion.isEmpty() || fecha_inicio.isEmpty() || fecha_final.isEmpty() || hora_inicio.isEmpty()
 				|| hora_final.isEmpty()){
-			request.setAttribute("errorMessage", "Quedaron campos obligatorios vacíos... <br /><br />");
+			request.setAttribute("errorMessage", "Quedaron campos obligatorios vacÃ­os... <br /><br />");
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);
 		}else{
-			
-			
-		}
+			boolean result = true;
+			if((integrantes == null)&& (grupos == null)){	
+					Evento evento = new Evento(id_creador,nombre, fecha_inicio,fecha_final, hora_inicio, hora_final, ubicacion);
+					result = daoEv.agregarEvento(evento );
+				if(result){
+					request.getRequestDispatcher("blog.jsp").forward(request, response);
+				}else{
+					request.setAttribute("errorMessage", "Hubo un error al agregar el evento. <br /><br />");
+					request.getRequestDispatcher("addevent.jsp").forward(request, response);
+				}
+			}else{
+				if((integrantes != null ) && (grupos == null)){
 
+				}
+
+			}
+
+		}
 
 		System.out.println("Id creador:" + id_creador );
 		System.out.println("Nombre del evento:" + nombre );
 		System.out.println("Ubicacion:" + ubicacion );
+		System.out.println("Fecha inicio:" + fecha_inicio );
+		System.out.println("Fecha final:" + fecha_final );
 
 	}
 

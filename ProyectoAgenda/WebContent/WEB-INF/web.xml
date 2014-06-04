@@ -15,10 +15,6 @@
     <servlet-name>addEvent</servlet-name>
     <servlet-class>fmat.proyectoMemo.servlets.AddEventServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-    <servlet-name>addEvent</servlet-name>
-    <url-pattern>/addEvent</url-pattern>
-  </servlet-mapping>
   <filter>
     <filter-name>struts2</filter-name>
     <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>

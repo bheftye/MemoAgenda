@@ -60,7 +60,11 @@
 			<result name="editGroup">/editgroup.jsp</result>
 		</action>
 		
-		
+		<action name="mostrarGrupo"
+			class="fmat.proyectoMemo.struts.action.GrupoAction" method="mostrarGrupo">
+			<result name="editGroup">/editgroup.jsp</result>
+			<result name="about">/about.jsp</result>
+		</action>
 
 		<action name="cerrarSesion" class="fmat.proyectoMemo.struts.action.UsuarioAction"
 			method="cerrarSesion">

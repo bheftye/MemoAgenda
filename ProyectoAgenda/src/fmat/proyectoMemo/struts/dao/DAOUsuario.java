@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import fmat.proyectoMemo.struts.model.Grupo;
 import fmat.proyectoMemo.struts.model.Usuario;
 
 public class DAOUsuario extends DAOBase {
@@ -32,9 +33,11 @@ public class DAOUsuario extends DAOBase {
 				+ "\"," + "MD5(\"" + nuevoUsuario.getContrasena() + "\"),\""+nuevoUsuario.getAlias()+".jpg\")";
 		try {
 			Statement statement = connection.createStatement();
-			int idUsuario = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-			nuevoUsuario.setIdUsuario(idUsuario);
-			if(idUsuario != 0){
+			statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+			ResultSet llavesGeneradas = statement.getGeneratedKeys();
+			if(llavesGeneradas.next()){
+				int idUsuario = llavesGeneradas.getInt(1);
+				nuevoUsuario.setIdUsuario(idUsuario);
 				oprExitosa = true;
 			}
 		} catch (SQLException ex) {
@@ -238,7 +241,10 @@ public class DAOUsuario extends DAOBase {
 			while (resultados.next()) {
 				ArrayList<Usuario> contactos = new ArrayList<>();
 				contactos = this.obtenerContactosPorId(resultados.getInt("id_usuario"));
-				usuario = new Usuario(resultados.getInt("id_usuario"),resultados.getString("alias"), resultados.getString("contrasena"),resultados.getString("nombre"),resultados.getString("correo"),resultados.getString("foto"), contactos);
+				ArrayList<Grupo> grupos = new ArrayList<>();
+				DAOGrupo dao = new DAOGrupo();
+				grupos = dao.obtenerGruposPorIdUsuario(resultados.getInt("id_usuario"));
+				usuario = new Usuario(resultados.getInt("id_usuario"),resultados.getString("alias"), resultados.getString("contrasena"),resultados.getString("nombre"),resultados.getString("correo"),resultados.getString("foto"), contactos, grupos);
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -256,8 +262,11 @@ public class DAOUsuario extends DAOBase {
 			ResultSet resultados = statement.executeQuery(sql);
 			while (resultados.next()) {
 				ArrayList<Usuario> contactos = new ArrayList<>();
+				ArrayList<Grupo> grupos = new ArrayList<>();
+				DAOGrupo dao = new DAOGrupo();
+				grupos = dao.obtenerGruposPorIdUsuario(resultados.getInt("id_usuario"));
 				contactos = this.obtenerContactosPorId(resultados.getInt("id_usuario"));
-				usuario = new Usuario(resultados.getInt("id_usuario"),resultados.getString("alias"), resultados.getString("contrasena"),resultados.getString("nombre"),resultados.getString("correo"),resultados.getString("foto"),contactos);
+				usuario = new Usuario(resultados.getInt("id_usuario"),resultados.getString("alias"), resultados.getString("contrasena"),resultados.getString("nombre"),resultados.getString("correo"),resultados.getString("foto"),contactos, grupos);
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();

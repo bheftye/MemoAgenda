@@ -33,13 +33,25 @@ public class GrupoAction  extends ActionSupport implements SessionAware{
 		return "createGroup";
 	}
 	
+	public String mostrarGrupo(){
+		if(!(grupo.getIdGrupo() == 0 && grupo.getIdGrupo() < 0)){
+			DAOGrupo dao = new DAOGrupo();
+			grupo = dao.obtenerGrupoPorId(grupo.getIdGrupo());
+			this.generarContactosAAgregar();
+			return "editGroup";
+		}
+		return "about";
+	}
+	
 	public String agregarIntegrante(){
 		if(grupo.getIdGrupo() != 0){
 			DAOGrupo dao = new DAOGrupo();
 			boolean esIntegrante = dao.esIntegrante(grupo.getIdGrupo(), usuario.getIdUsuario());
-			if(esIntegrante){
+			if(!esIntegrante){
 				boolean insercionExitosa = dao.insertarIntegranteEnGrupo(grupo.getIdGrupo(), usuario.getIdUsuario());
 				if(insercionExitosa){
+					grupo = dao.obtenerGrupoPorId(grupo.getIdGrupo());
+					this.generarContactosAAgregar();
 					addActionError("Usuario agregado al grupo.");
 					return "editGroup";
 				}

@@ -10,9 +10,10 @@ public class Usuario {
 	private String correo;
 	private String foto;
 	private ArrayList<Usuario> contactos;
+	private ArrayList<Grupo> grupos;
 	
 	public Usuario(int idUsuario, String alias, String contrasena,
-			String nombre, String correo, String foto, ArrayList<Usuario> contactos) {
+			String nombre, String correo, String foto, ArrayList<Usuario> contactos, ArrayList<Grupo> grupos) {
 		super();
 		this.idUsuario = idUsuario;
 		this.alias = alias;
@@ -21,6 +22,7 @@ public class Usuario {
 		this.correo = correo;
 		this.foto = foto;
 		this.contactos = contactos;
+		this.grupos = grupos;
 	}
 
 	public Usuario(){}
@@ -69,5 +71,14 @@ public class Usuario {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+
+	public ArrayList<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(ArrayList<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+	
 
 }

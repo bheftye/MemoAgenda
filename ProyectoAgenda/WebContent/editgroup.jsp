@@ -70,6 +70,18 @@
 								<s:hidden name="grupo.idUsuarioCreador" value="%{#session['usuario'].idUsuario}" />
 								<s:submit cssClass="submit" value="Guardar" />
 							</s:form>
+							<s:div>
+								<s:property escape="false" value="htmlAgregarContactos"/>
+							</s:div>
+							<s:div>
+							<h5>Integrantes:</h5>
+								<s:iterator value="grupo.integrantes" status="a">
+								<s:iterator value="grupo.integrantes[#a.index]">
+									<s:property value="alias" />
+									<br>
+								</s:iterator>
+							</s:iterator>
+							</s:div>
 							
 							
 						</div>

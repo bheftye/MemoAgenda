@@ -17,6 +17,7 @@
 	$(function() {
 		$("#datepicker").datepicker();
 		$("#datepickers").datepicker();
+		$("#datepicker3").datepicker();
 
 	});
 </script>
@@ -87,32 +88,6 @@
 									<tr>
 										<td><label>*Hora final:</label></td>
 										<td><input type="text" name="hora_final" size="31"></td>
-									</tr>
-									<tr>
-										<td><label>*Repetición de evento:</label></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Ninguno</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Diario</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Cada
-											semana</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Cada
-											mes</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="radio" name="repeticion" value="ninguno">Cada
-											año</td>
 									</tr>
 									<tr>
 										<td><label>Invitar usuarios:</label></td>
