@@ -53,7 +53,7 @@
 									<td width="200px" align="left"></td>
 									<td width="200px" align="left"><strong>Contactos:
 									</strong><s:property value="#session['usuario'].contactos.size"/></td>
-									<td><strong>Grupos: </strong> 6</td>
+									<td><strong>Grupos: </strong> <s:property value="#session['usuario'].grupos.size"/></td>
 								</tr>
 							</table>
 						</div>
@@ -83,7 +83,7 @@
 								<a href="addcontact.jsp" style="text-decoration:none;"><h3>A&ntilde;adir contacto</h3></a>
 							</div>
 							<div class="section">
-								<h3>Crear grupo</h3>
+								<a href="addcontact.jsp" style="text-decoration:none;"><h3>Crear grupo</h3></a>
 							</div>
 						</div>
 					</div>

@@ -152,7 +152,7 @@
 										evento</h3></a>
 							</div>
 							<div>
-								<a href="addtasklist.jsp"><h3>Agregar lista de tareas</h3></a>
+								<h3>Agregar lista de tareas</h3>
 								<br /> <br /> <br /> <br />
 							</div>
 						</div>

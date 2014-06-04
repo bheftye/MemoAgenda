@@ -51,7 +51,7 @@
 									<td width="200px" align="left"></td>
 									<td width="200px" align="left"><strong>Contactos:
 									</strong><s:property value="#session['usuario'].contactos.size"/></td>
-									<td><strong>Grupos: </strong> 6</td>
+									<td><strong>Grupos: </strong> <s:property value="#session['usuario'].grupos.size"/></td>
 								</tr>
 							</table>
 						</div>
@@ -88,9 +88,7 @@
 								<s:submit cssClass="submit" value="Cambiar Contraseña" />
 							</s:form>
 							
-							<h1>Contactos</h1>
-							<p></p>
-							<h1>Grupos</h1>
+							
 							<p></p>
 						</div>
 						<div class="sidebar">
@@ -101,7 +99,7 @@
 								<a href="addcontact.jsp" style="text-decoration:none;"><h3>A&ntilde;adir contacto</h3></a>
 							</div>
 							<div class="section">
-								<h3>Crear grupo</h3>
+								<a href="addcontact.jsp" style="text-decoration:none;"><h3>Crear grupo</h3></a>
 							</div>
 						</div>
 					</div>

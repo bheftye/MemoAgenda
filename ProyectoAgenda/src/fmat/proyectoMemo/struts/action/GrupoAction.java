@@ -26,6 +26,7 @@ public class GrupoAction  extends ActionSupport implements SessionAware{
 			DAOGrupo dao = new DAOGrupo();
 			boolean insercionExitosa = dao.insetarGrupo(grupo);
 			if(insercionExitosa){
+				this.generarContactosAAgregar();
 				return "editGroup";
 			}
 		}
@@ -56,9 +57,13 @@ public class GrupoAction  extends ActionSupport implements SessionAware{
 					return "editGroup";
 				}
 				addActionError("Ocurrio un error, intentalo de nuevo.");
+				grupo = dao.obtenerGrupoPorId(grupo.getIdGrupo());
+				this.generarContactosAAgregar();
 				return "editGroup";
 			}
 			addActionError("Ya es un integrante del grupo");
+			grupo = dao.obtenerGrupoPorId(grupo.getIdGrupo());
+			this.generarContactosAAgregar();
 			return "editGroup";
 			
 		}

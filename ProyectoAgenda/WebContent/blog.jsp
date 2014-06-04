@@ -67,7 +67,7 @@
 								<a href="addevent.jsp"><h3>Agregar evento</h3></a>
 							</div>
 							<div>
-								<h3>Agregar lista de tareas</h3>
+								<a href="addtasklist.jsp"><h3>Agregar lista de tareas</h3></a>
 								<br /> <br /> <br /> <br />
 							</div>
 						</div>
